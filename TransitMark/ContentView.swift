@@ -9,53 +9,131 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @Query(sort: \Trip.createdAt, order: .reverse) private var trips: [Trip]
+    @State private var showingTripsList = false
+    @AppStorage(PreferenceKey.colorScheme) private var colorSchemeChoice: String = "system"
+    @AppStorage(PreferenceKey.language) private var languageChoice: String = "pt"
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
+        TimelineView(.periodic(from: .now, by: 30)) { timeline in
+            StateView(
+                trips: trips,
+                date: timeline.date,
+                onOpenTrips: { showingTripsList = true }
+            )
         }
+        .sheet(isPresented: $showingTripsList) {
+            TripsListView(isPresentedAsSheet: true)
+        }
+        .preferredColorScheme(preferredColorScheme)
+        .environment(\.locale, Locale(identifier: languageChoice))
+        .task { WidgetSnapshotWriter.update(trips: trips) }
+        .onChange(of: trips) { WidgetSnapshotWriter.update(trips: trips) }
     }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
+    private var preferredColorScheme: ColorScheme? {
+        switch colorSchemeChoice {
+        case "light": return .light
+        case "dark": return .dark
+        default: return nil
         }
     }
 }
 
-#Preview {
+private struct StateView: View {
+    let trips: [Trip]
+    let date: Date
+    let onOpenTrips: () -> Void
+
+    private var state: AppState {
+        CurrentStateResolver().resolve(trips: trips, now: date)
+    }
+
+    private var liveActivityToken: String {
+        if let flight = state.preBoardingFlight { return flight.id.uuidString }
+        return ""
+    }
+
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            stateContent
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+            if state.allowsOverlayTripsButton {
+                tripsButton
+                    .padding(.bottom, 32)
+            }
+        }
+        .task(id: liveActivityToken) {
+            BoardingActivityController.shared.handle(state)
+        }
+    }
+
+    @ViewBuilder
+    private var stateContent: some View {
+        switch state {
+        case .preBoarding(let flight):
+            PreBoardingView(flight: flight)
+        case .inFlight(let flight, let stay):
+            InFlightView(flight: flight, destinationStay: stay, now: date)
+        case .landing(let flight, let stay):
+            LandingView(flight: flight, destinationStay: stay)
+        case .staying(let stay, let items):
+            StayingView(currentStay: stay, upcomingItems: items, now: date)
+        case .idle:
+            TripsListView()
+        }
+    }
+
+    private var tripsButton: some View {
+        Button(action: onOpenTrips) {
+            Label("Viagens", systemImage: "list.bullet")
+                .font(.system(.subheadline, design: .rounded, weight: .semibold))
+                .foregroundStyle(.primary)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 13)
+                .background(.regularMaterial, in: Capsule())
+                .shadow(color: .black.opacity(0.18), radius: 12, y: 4)
+        }
+        .buttonStyle(.plain)
+    }
+}
+
+private extension AppState {
+    var allowsOverlayTripsButton: Bool {
+        switch self {
+        case .idle: return false
+        case .preBoarding, .inFlight, .landing, .staying: return true
+        }
+    }
+}
+
+#Preview("Lista de viagens") {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: Trip.self, inMemory: true)
+}
+
+#Preview("Pré-Embarque") {
+    PreBoardingView(flight: SampleData.preBoardingFlight())
+}
+
+#Preview("Bordo") {
+    InFlightView(
+        flight: SampleData.preBoardingFlight(),
+        destinationStay: SampleData.tokyoStay()
+    )
+}
+
+#Preview("Pouso") {
+    LandingView(
+        flight: SampleData.preBoardingFlight(),
+        destinationStay: SampleData.tokyoStay()
+    )
+}
+
+#Preview("Estadia") {
+    StayingView(
+        currentStay: SampleData.tokyoStay(),
+        upcomingItems: SampleData.tokyoDayItems()
+    )
 }

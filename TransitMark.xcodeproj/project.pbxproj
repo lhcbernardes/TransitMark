@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0079B4882FECA632002B1019 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0079B4872FECA632002B1019 /* WidgetKit.framework */; };
+		0079B48A2FECA632002B1019 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0079B4892FECA632002B1019 /* SwiftUI.framework */; };
+		0079B4992FECA633002B1019 /* TransitMarkWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0079B4852FECA632002B1019 /* TransitMarkWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		0079B4142FE9D4D1002B1019 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -21,17 +27,62 @@
 			remoteGlobalIDString = 0079B4032FE9D4D0002B1019;
 			remoteInfo = TransitMark;
 		};
+		0079B4972FECA633002B1019 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0079B3FC2FE9D4D0002B1019 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0079B4842FECA632002B1019;
+			remoteInfo = TransitMarkWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0079B49E2FECA633002B1019 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				0079B4992FECA633002B1019 /* TransitMarkWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0079B4042FE9D4D0002B1019 /* TransitMark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransitMark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0079B4132FE9D4D1002B1019 /* TransitMarkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransitMarkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0079B41D2FE9D4D1002B1019 /* TransitMarkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransitMarkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0079B4852FECA632002B1019 /* TransitMarkWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TransitMarkWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		0079B4872FECA632002B1019 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		0079B4892FECA632002B1019 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		0079B49F2FECA6DA002B1019 /* TransitMarkWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TransitMarkWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		0079B49A2FECA633002B1019 /* Exceptions for "TransitMarkWidget" folder in "TransitMarkWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 0079B4842FECA632002B1019 /* TransitMarkWidgetExtension */;
+		};
+		00BBD9612FED47C400E7771F /* Exceptions for "TransitMark" folder in "TransitMark" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 0079B4032FE9D4D0002B1019 /* TransitMark */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0079B4062FE9D4D0002B1019 /* TransitMark */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				00BBD9612FED47C400E7771F /* Exceptions for "TransitMark" folder in "TransitMark" target */,
+			);
 			path = TransitMark;
 			sourceTree = "<group>";
 		};
@@ -43,6 +94,14 @@
 		0079B4202FE9D4D1002B1019 /* TransitMarkUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = TransitMarkUITests;
+			sourceTree = "<group>";
+		};
+		0079B48B2FECA632002B1019 /* TransitMarkWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0079B49A2FECA633002B1019 /* Exceptions for "TransitMarkWidget" folder in "TransitMarkWidgetExtension" target */,
+			);
+			path = TransitMarkWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -69,15 +128,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0079B4822FECA632002B1019 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0079B48A2FECA632002B1019 /* SwiftUI.framework in Frameworks */,
+				0079B4882FECA632002B1019 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		0079B3FB2FE9D4D0002B1019 = {
 			isa = PBXGroup;
 			children = (
+				0079B49F2FECA6DA002B1019 /* TransitMarkWidgetExtension.entitlements */,
 				0079B4062FE9D4D0002B1019 /* TransitMark */,
 				0079B4162FE9D4D1002B1019 /* TransitMarkTests */,
 				0079B4202FE9D4D1002B1019 /* TransitMarkUITests */,
+				0079B48B2FECA632002B1019 /* TransitMarkWidget */,
+				0079B4862FECA632002B1019 /* Frameworks */,
 				0079B4052FE9D4D0002B1019 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,8 +159,18 @@
 				0079B4042FE9D4D0002B1019 /* TransitMark.app */,
 				0079B4132FE9D4D1002B1019 /* TransitMarkTests.xctest */,
 				0079B41D2FE9D4D1002B1019 /* TransitMarkUITests.xctest */,
+				0079B4852FECA632002B1019 /* TransitMarkWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		0079B4862FECA632002B1019 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0079B4872FECA632002B1019 /* WidgetKit.framework */,
+				0079B4892FECA632002B1019 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,10 +183,12 @@
 				0079B4002FE9D4D0002B1019 /* Sources */,
 				0079B4012FE9D4D0002B1019 /* Frameworks */,
 				0079B4022FE9D4D0002B1019 /* Resources */,
+				0079B49E2FECA633002B1019 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0079B4982FECA633002B1019 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				0079B4062FE9D4D0002B1019 /* TransitMark */,
@@ -163,6 +246,28 @@
 			productReference = 0079B41D2FE9D4D1002B1019 /* TransitMarkUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		0079B4842FECA632002B1019 /* TransitMarkWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0079B49B2FECA633002B1019 /* Build configuration list for PBXNativeTarget "TransitMarkWidgetExtension" */;
+			buildPhases = (
+				0079B4812FECA632002B1019 /* Sources */,
+				0079B4822FECA632002B1019 /* Frameworks */,
+				0079B4832FECA632002B1019 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				0079B48B2FECA632002B1019 /* TransitMarkWidget */,
+			);
+			name = TransitMarkWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = TransitMarkWidgetExtension;
+			productReference = 0079B4852FECA632002B1019 /* TransitMarkWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -184,6 +289,9 @@
 						CreatedOnToolsVersion = 26.5;
 						TestTargetID = 0079B4032FE9D4D0002B1019;
 					};
+					0079B4842FECA632002B1019 = {
+						CreatedOnToolsVersion = 26.5;
+					};
 				};
 			};
 			buildConfigurationList = 0079B3FF2FE9D4D0002B1019 /* Build configuration list for PBXProject "TransitMark" */;
@@ -203,6 +311,7 @@
 				0079B4032FE9D4D0002B1019 /* TransitMark */,
 				0079B4122FE9D4D1002B1019 /* TransitMarkTests */,
 				0079B41C2FE9D4D1002B1019 /* TransitMarkUITests */,
+				0079B4842FECA632002B1019 /* TransitMarkWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -223,6 +332,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0079B41B2FE9D4D1002B1019 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0079B4832FECA632002B1019 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -253,6 +369,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0079B4812FECA632002B1019 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -265,6 +388,11 @@
 			isa = PBXTargetDependency;
 			target = 0079B4032FE9D4D0002B1019 /* TransitMark */;
 			targetProxy = 0079B41E2FE9D4D1002B1019 /* PBXContainerItemProxy */;
+		};
+		0079B4982FECA633002B1019 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0079B4842FECA632002B1019 /* TransitMarkWidgetExtension */;
+			targetProxy = 0079B4972FECA633002B1019 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -393,10 +521,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TransitMark/TransitMark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M9HLM2MC8R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TransitMark/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSCalendarsWriteOnlyAccessUsageDescription = "O TransitMark pode adicionar voos, estadias e atividades da sua viagem ao Calendário para facilitar o acompanhamento.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "O TransitMark usa a localização para sugerir aeroportos, hotéis e pontos de interesse ao adicionar destinos à sua viagem.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -407,7 +542,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Any.TransitMark;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lhcbernardes.TransitMark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -424,10 +559,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TransitMark/TransitMark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M9HLM2MC8R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TransitMark/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSCalendarsWriteOnlyAccessUsageDescription = "O TransitMark pode adicionar voos, estadias e atividades da sua viagem ao Calendário para facilitar o acompanhamento.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "O TransitMark usa a localização para sugerir aeroportos, hotéis e pontos de interesse ao adicionar destinos à sua viagem.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -438,7 +580,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Any.TransitMark;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lhcbernardes.TransitMark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -456,10 +598,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M9HLM2MC8R;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Any.TransitMarkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lhcbernardes.TransitMarkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -477,10 +620,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M9HLM2MC8R;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Any.TransitMarkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lhcbernardes.TransitMarkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -497,9 +641,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M9HLM2MC8R;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Any.TransitMarkUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lhcbernardes.TransitMarkUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -516,9 +661,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M9HLM2MC8R;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Any.TransitMarkUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lhcbernardes.TransitMarkUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -527,6 +673,68 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = TransitMark;
+			};
+			name = Release;
+		};
+		0079B49C2FECA633002B1019 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = TransitMarkWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M9HLM2MC8R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TransitMarkWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TransitMarkWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lhcbernardes.TransitMark.TransitMarkWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0079B49D2FECA633002B1019 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = TransitMarkWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M9HLM2MC8R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TransitMarkWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TransitMarkWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lhcbernardes.TransitMark.TransitMarkWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -565,6 +773,15 @@
 			buildConfigurations = (
 				0079B42E2FE9D4D1002B1019 /* Debug */,
 				0079B42F2FE9D4D1002B1019 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0079B49B2FECA633002B1019 /* Build configuration list for PBXNativeTarget "TransitMarkWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0079B49C2FECA633002B1019 /* Debug */,
+				0079B49D2FECA633002B1019 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

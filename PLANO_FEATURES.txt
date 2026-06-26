@@ -1,0 +1,103 @@
+TransitMark — Plano de Features
+================================
+Execução em ordem de impacto × esforço.
+Marque cada item com [x] ao concluir.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FASE 1 — ALTO IMPACTO, BAIXO ESFORÇO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[x] 1. Notificação de check-in online (24h antes)
+    Arquivo: TransitMark/State/NotificationScheduler.swift
+    - Adicionar em scheduleAll(for:) um novo lembrete por voo:
+      triggerAt = scheduledDeparture - 24h
+      title = "Check-in disponível"
+      body  = "<displayCode> · <origin> → <destination>"
+    - Garantir que a janela seja > .now (voo ainda não partiu).
+
+[x] 2. Duração do voo + progresso em tempo real (InFlightView)
+    Arquivo: TransitMark/Views/InFlightView.swift
+    - Calcular duração total: scheduledArrival - scheduledDeparture
+    - Calcular progresso: (now - scheduledDeparture) / duração  (0…1)
+    - Mostrar barra ProgressView linear + "Chegada em Xh Ymin"
+    - Usar TimelineView(.periodic(by: 60)) já presente no ContentView
+      ou receber `now: Date` via parâmetro (preferível — sem relógio
+      interno na view).
+
+[x] 3. Rota do aeroporto → hotel (InFlightView + LandingView)
+    Arquivos: TransitMark/Views/InFlightView.swift
+              TransitMark/Views/LandingView.swift
+    - Substituir o botão "Copiar endereço" por dois botões:
+        • "Copiar endereço" (mantém comportamento atual)
+        • "Como chegar"  → MKMapItem.openMaps com origem no aeroporto
+          de destino (flight.destinationCoordinate) e destino na Stay.
+    - Usar MKMapItem(location:address:) — API iOS 26 (sem MKPlacemark).
+    - Se Stay não tiver coordenada, abrir apenas o endereço como texto.
+
+[x] 4. "Abrir no Mapas" nas linhas de Stay e Activity (TripDetailView)
+    Arquivo: TransitMark/Views/TripDetailView.swift
+    - Em StayRow: adicionar swipe action .leading "Navegar"
+      (systemImage: "map.fill") quando stay.coordinate != nil.
+    - Em ActivityRow: idem quando activity.coordinate != nil.
+    - Ação: abrir MKMapItem com a coordenada do item.
+    - Alternativa (menor esforço): context menu com Label("Como chegar").
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FASE 2 — ALTO IMPACTO, ESFORÇO MÉDIO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[x] 5. Comparativo de fusos (InFlightView)
+    Arquivo: TransitMark/Views/InFlightView.swift
+    - Mostrar dois relógios (origem × destino) com hora atual em cada TZ.
+    - Usar flight.originTimeZone e flight.destinationTimeZone.
+    - Atualizar via TimelineView(.periodic(by: 60)).
+
+[x] 6. Hora local do destino no StayingView
+    Arquivo: TransitMark/Views/StayingView.swift
+    - No cabeçalho "HOSPEDADO EM", adicionar abaixo do nome do hotel
+      a hora atual no fuso da hospedagem (stay.timeZone).
+    - Atualizar via TimelineView no pai (ContentView já tem .periodic(30)).
+      Passar `now: Date` como parâmetro para StayingView.
+
+[x] 7. Compartilhar itinerário
+    Arquivo: TransitMark/Views/TripDetailView.swift
+    - Gerar texto simples com toda a timeline da viagem (voos, estadias,
+      atividades) em ordem cronológica.
+    - Expor via ShareLink ou UIActivityViewController.
+    - Adicionar ao menu "…" já existente na toolbar de TripDetailView.
+
+[x] 8. Importação por câmera / arquivo (boarding pass)
+    Arquivo novo: TransitMark/State/BoardingPassImporter.swift
+    - Usar VisionKit (DataScannerViewController) ou PHPickerViewController
+      para capturar imagem / PDF.
+    - Passar o texto extraído para FoundationModels (on-device LLM) com
+      um prompt estruturado para extrair: companhia, número do voo,
+      origem, destino, horários, assento, portão, código de reserva.
+    - Pré-preencher FlightEditorView com os dados extraídos.
+    - Ponto de entrada: botão "Importar boarding pass" em TripDetailView.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FASE 3 — REFINAMENTOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[x] 9. Swipe-to-archive manual (TripsListView)
+    Arquivo: TransitMark/Views/TripsListView.swift
+    - Adicionar swipe action "Arquivar" na seção de viagens ativas.
+    - Implementar via Trip.manualArchive: Bool (novo campo no modelo)
+      ou simplesmente ajustando Trip.isArchived para aceitar override.
+    - Garantir que viagem arquivada manualmente saia do resolver.
+
+[x] 10. Widget com próximo compromisso interativo (iOS 17+)
+    Arquivo: TransitMark/TransitMarkWidget/TransitMarkWidget.swift
+    - Mostrar o próximo TripTimelineItem do WidgetSnapshot.
+    - Adicionar AppIntent "Abrir rota" como Button interativo.
+    - Exige atualizar WidgetSnapshot para incluir coordenada do próximo item.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+NOTAS GERAIS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- Sempre usar MKMapItem(location:address:) — MKPlacemark depreciado iOS 26.
+- Notificações: usar UNTimeIntervalNotificationTrigger (já corrigido).
+- Archived trips já filtradas no CurrentStateResolver (já corrigido).
+- Testar cada feature em dispositivo real (Live Activities e widgets
+  não funcionam corretamente no simulador).

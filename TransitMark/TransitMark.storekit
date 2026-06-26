@@ -1,0 +1,100 @@
+{
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "pt_BR",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
+  "identifier" : "TransitMarkTipJar",
+  "nonRenewingSubscriptions" : [],
+  "products" : [
+    {
+      "displayPrice" : "4.90",
+      "familyShareable" : false,
+      "internalID" : "TIP01",
+      "localizations" : [
+        {
+          "description" : "Um cafezinho pra agradecer.",
+          "displayName" : "Café",
+          "locale" : "pt_BR"
+        }
+      ],
+      "productID" : "com.lhcbernardes.transitmark.tip.coffee",
+      "referenceName" : "Café",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "14.90",
+      "familyShareable" : false,
+      "internalID" : "TIP02",
+      "localizations" : [
+        {
+          "description" : "Um lanche enquanto espero o portão abrir.",
+          "displayName" : "Lanche de aeroporto",
+          "locale" : "pt_BR"
+        }
+      ],
+      "productID" : "com.lhcbernardes.transitmark.tip.snack",
+      "referenceName" : "Lanche de aeroporto",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "29.90",
+      "familyShareable" : false,
+      "internalID" : "TIP03",
+      "localizations" : [
+        {
+          "description" : "Um jantar pra fechar o dia bem.",
+          "displayName" : "Jantar na viagem",
+          "locale" : "pt_BR"
+        }
+      ],
+      "productID" : "com.lhcbernardes.transitmark.tip.meal",
+      "referenceName" : "Jantar na viagem",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "99.90",
+      "familyShareable" : false,
+      "internalID" : "TIP04",
+      "localizations" : [
+        {
+          "description" : "Pra continuar viajando alto.",
+          "displayName" : "Upgrade na classe",
+          "locale" : "pt_BR"
+        }
+      ],
+      "productID" : "com.lhcbernardes.transitmark.tip.upgrade",
+      "referenceName" : "Upgrade na classe",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "",
+    "_developerTeamID" : "",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 0,
+    "_locale" : "pt_BR",
+    "_storefront" : "BRA",
+    "_storeKitErrors" : [
+      { "current" : null, "enabled" : false, "name" : "Load Products" },
+      { "current" : null, "enabled" : false, "name" : "Purchase" },
+      { "current" : null, "enabled" : false, "name" : "Verification" },
+      { "current" : null, "enabled" : false, "name" : "App Store Sync" },
+      { "current" : null, "enabled" : false, "name" : "Subscription Status" },
+      { "current" : null, "enabled" : false, "name" : "App Transaction" },
+      { "current" : null, "enabled" : false, "name" : "Manage Subscriptions Sheet" },
+      { "current" : null, "enabled" : false, "name" : "Refund Request Sheet" },
+      { "current" : null, "enabled" : false, "name" : "Offer Code Redeem Sheet" }
+    ]
+  },
+  "subscriptionGroups" : [],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}
