@@ -113,6 +113,7 @@ private extension AppState {
         .modelContainer(for: Trip.self, inMemory: true)
 }
 
+#if DEBUG
 #Preview("Pré-Embarque") {
     PreBoardingView(flight: SampleData.preBoardingFlight())
 }
@@ -137,3 +138,4 @@ private extension AppState {
         upcomingItems: SampleData.tokyoDayItems()
     )
 }
+#endif

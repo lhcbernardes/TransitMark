@@ -132,9 +132,11 @@ struct LandingView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     LandingView(
         flight: SampleData.preBoardingFlight(),
         destinationStay: SampleData.tokyoStay()
     )
 }
+#endif

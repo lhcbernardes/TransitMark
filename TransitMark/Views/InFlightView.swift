@@ -220,9 +220,11 @@ struct InFlightView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     InFlightView(
         flight: SampleData.preBoardingFlight(),
         destinationStay: SampleData.tokyoStay()
     )
 }
+#endif

@@ -166,6 +166,8 @@ struct PreBoardingView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     PreBoardingView(flight: SampleData.preBoardingFlight())
 }
+#endif

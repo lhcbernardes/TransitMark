@@ -125,6 +125,7 @@ private struct TimelineCard: View {
     }
 }
 
+#if DEBUG
 #Preview("Com agenda") {
     StayingView(
         currentStay: SampleData.tokyoStay(),
@@ -138,3 +139,4 @@ private struct TimelineCard: View {
         upcomingItems: []
     )
 }
+#endif
